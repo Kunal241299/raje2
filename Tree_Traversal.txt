@@ -1,0 +1,108 @@
+#include<stdio.h>
+#include<conio.h>
+
+#define NULL 0
+struct bstnode
+{
+  struct bstnode *lchild ;
+  int data ;
+  struct bstnode *rchild ;
+};
+
+struct bstnode *root=0;
+
+void insert(int x) ;
+void inorder(struct bstnode *) ;
+void preorder(struct bstnode *) ;
+void postorder(struct bstnode *) ;
+
+
+void inorder(struct bstnode *t)
+{
+  if(t!=NULL)
+  {
+    inorder(t->lchild);
+    printf("%d\n",t->data);
+    inorder(t->rchild);
+  }
+}
+
+
+void preorder(struct bstnode *t)
+{
+  if(t!=NULL)
+  {
+    printf("%d\n",t->data);
+    preorder(t->lchild);
+    preorder(t->rchild);
+  }
+}
+
+void postorder(struct bstnode *t)
+{
+  if(t!=NULL)
+  {
+    postorder(t->lchild);
+    postorder(t->rchild);
+    printf("%d\n",t->data);
+  }
+}
+
+
+void insert(int x)
+{
+    struct bstnode *p,*t ;
+    int done ;
+    p = (struct bstnode *)malloc(sizeof(struct bstnode));
+    p->data = x ;
+    p->lchild = NULL ;
+    p->rchild = NULL ;
+    if(root == NULL)
+    {
+      root = p ;
+    }
+    else
+    {
+      t = root ;
+      done = 0 ;
+      while(done == 0)
+      {
+       if( x < t->data)
+       {
+	if(t->lchild==NULL)
+	{
+	  t->lchild = p ;
+	  done = 1;
+	}
+	else
+	  t=t->lchild ;
+	}
+
+       else
+	{
+	 if(t->rchild==NULL)
+	 {
+	    t->rchild=p;
+	    done=1;
+	 }
+	 else
+	   t=t->rchild ;
+	 }
+	} /*end while */
+      } /*end if else */
+} /*BST */
+
+void main()
+{
+  insert(10);
+  insert(20);
+  insert(100);
+  insert(60);
+  insert(40);
+  insert(30);
+  insert(90);
+  inorder(root);
+  preorder(root) ;
+  postorder(root) ;
+}
+

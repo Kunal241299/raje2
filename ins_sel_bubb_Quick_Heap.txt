@@ -1,0 +1,248 @@
+
+void bubbleSort(int numbers[], int n)
+{
+  int i, j, temp;
+
+  for (i = 0 ; i < n -1 ; i++)
+  {
+    for (j = 0; j < n-1-i ; j++)
+    {
+      if (numbers[j] > numbers[j+1])
+      {
+	temp = numbers[j];
+	numbers[j] = numbers[j+1];
+	numbers[j+1] = temp;
+      }
+    }
+  }
+}
+
+void insertionSort(int numbers[],int n)
+{
+  int i, j, index;
+  for (i=1; i < n; i++)
+  {
+    index = numbers[i];
+    j = i;
+    while ((j > 0) && (numbers[j-1] > index))
+    {
+      numbers[j] = numbers[j-1];
+      j = j - 1;
+    }
+    numbers[j] = index;
+  }
+}
+
+
+void selectionSort(int numbers[],int n)
+{
+  int i, j;
+  int min, temp;
+
+  for (i = 0; i < n-1; i++)
+  {
+    min = i;
+    for (j = i+1; j < n ; j++)
+    {
+      if (numbers[j] < numbers[min])
+	min = j;
+    }
+    temp = numbers[i];
+    numbers[i] = numbers[min];
+    numbers[min] = temp;
+  }
+}
+
+/* Next two functions are of Quick Sort */
+
+int partition(int A[], int lb, int ub)
+{
+int pivot = A[lb] ;
+int start = lb ;
+int end = ub ;
+int temp ;
+
+while(start < end)
+{
+	while(A[start]<=pivot) start ++ ;
+	while(A[end]>pivot) end -- ;
+	if(start < end)
+	{ /* Swap A[start] with A[end] */
+	  temp = A[start] ;
+	  A[start]=A[end];
+	  A[end]=temp ;
+	}
+}
+/* Swap A[lb] with A[end] */
+
+temp = A[lb] ;
+A[lb]=A[end];
+A[end]=temp ;
+return end ;
+}
+
+QuickSort(int A[],int lb, int ub)
+{
+int loc;
+if(lb < ub)
+{
+	loc = partition(A,lb,ub) ;
+	QuickSort(A,lb,loc-1);
+	QuickSort(A,loc+1,ub);
+}
+return ;
+}	
+
+/* Next two functions are of Heap Sort */
+
+void siftDown(int numbers[], int root, int bottom)
+{
+  int done, maxChild, temp;
+
+  done = 0;
+  while ((root*2 + 1 <= bottom) && (!done))
+  {
+    if (root*2 + 1 == bottom ||
+	numbers[root * 2 + 1] > numbers[root * 2 + 2])
+      maxChild = root * 2 + 1;
+    else
+      maxChild = root * 2 + 2;
+
+    if (numbers[root] < numbers[maxChild])
+    {
+      temp = numbers[root];
+      numbers[root] = numbers[maxChild];
+      numbers[maxChild] = temp;
+      root = maxChild;
+    }
+    else
+      done = 1;
+  }
+}
+
+void heapSort(int numbers[], int ub)
+{
+  int i, temp;
+
+  for (i =(int)ceil((ub / 2.0))-1; i >= 0; i--)
+  {
+    siftDown(numbers, i, ub);
+  }
+
+  for (i = ub; i >= 1; i--)
+  {
+    temp = numbers[0];
+    numbers[0] = numbers[i];
+    numbers[i] = temp;
+    siftDown(numbers, 0, i-1);
+  }
+}
+
+void merge(int numbers[], int temp[], int left, int mid, int right)
+{
+  int i, left_end, num_elements, tmp_pos;
+  left_end = mid - 1;
+  tmp_pos = left;
+  num_elements = right - left + 1;
+
+  while ((left <= left_end) && (mid <= right))
+  {
+    if (numbers[left] <= numbers[mid])
+    {
+      temp[tmp_pos] = numbers[left];
+      tmp_pos = tmp_pos + 1;
+      left = left +1;
+    }
+    else
+    {
+      temp[tmp_pos] = numbers[mid];
+      tmp_pos = tmp_pos + 1;
+      mid = mid + 1;
+    }
+  }
+
+  while (left <= left_end)
+  {
+    temp[tmp_pos] = numbers[left];
+    left = left + 1;
+    tmp_pos = tmp_pos + 1;
+  }
+
+  while (mid <= right)
+  {
+    temp[tmp_pos] = numbers[mid];
+    mid = mid + 1;
+    tmp_pos = tmp_pos + 1;
+  }
+
+  for (i=0; i < num_elements; i++)
+  {
+    numbers[right] = temp[right];
+    right = right - 1;
+  }
+}
+
+void m_sort(int numbers[], int temp[], int left, int right)
+{
+  int mid;
+  if (right > left)
+  {
+    mid = (right + left) / 2;
+    m_sort(numbers, temp, left, mid);
+    m_sort(numbers, temp, mid+1, right);
+    merge(numbers, temp, left, mid+1, right);
+  }
+}
+
+void mergeSort(int numbers[], int temp[], int array_size)
+{
+	m_sort(numbers, temp, 0, array_size - 1);
+}
+
+
+
+
+void main()
+{
+int i;
+int data[] = { 16, 20, 12, 8 , 9 , 4, 7, 21,11 } ;
+int n=9;
+/* temp array for mergeSort */
+int temp[9] ;
+
+clrscr() ;
+
+/* Write the logic to Read the elements from the user */
+//Just replace the following line to call any of the above functions
+printf("Original :");
+ for ( i = 0 ; i < n ; i ++ )
+ {
+	printf("%d ", data[i] ) ;
+ }
+printf("\n");
+
+/* Remove the comments of the algorithm to execute */
+
+/* Pass data and number of elements in the list to bubble, selection, insertion and merge */
+
+/* bubbleSort(data, n); */
+/* selectionSort(data, n); */
+/* insertionSort(data, n); */
+/* mergeSort(data, temp, n) ; */
+
+/* Pass Lower Bound i.e., 0 and upper bound n - 1 to QuickSort */
+/* QuickSort(data,0,n-1);
+
+/*  Pass upper bound i,e. n - 1 to heapSort */
+/* heapSort(data, n - 1); */
+
+printf("Sorted :");
+ for ( i = 0 ; i < n ; i ++ )
+ {
+	printf("%d ", data[i] ) ;
+ }
+}
+
+
+
+
