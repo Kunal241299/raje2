@@ -1,0 +1,58 @@
+INTERNAL THEORY-----------------
+
+	            ASDM
+              	    ML
+                    DS
+	            
+INTERNAL PRACTICAL----------------
+
+	            ASDM
+
+============PASS ===========
+
+INTERNAL THERY-----------
+
+                   JAVA
+                   MATHAMATICS
+
+
+INTERNAL PRACTICAL----------
+ 
+                   DS
+                   ML 
+
+
+
+ SUB=========CAB==========DATE============TIME
+
+ DS         CAB-7       10/08/23      12:30-2:30      
+
+ ASDM       CAB-6       11/08/23      2:45-4:45
+
+ ML         CAB-9       17/08/23      2:45-4:45        | 
+                                                       |  PASSSEDD
+JAVA       CAB-10      18/08/23      10:00-12:00       |
+
+
+   SUB==============DATE============TIME
+  
+  DATA STRUCTER    28/08/23       2:00-5:00       | 
+                                                  |
+  MACHINE LERNING  29/08/23       2:00-5:00       |  PASSSEDD
+                                                  |       
+  ADVANCE JAVA     30/08/23       2:00-5:00       |
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
